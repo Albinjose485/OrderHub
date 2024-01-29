@@ -1,0 +1,38 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %} Palatial Patisserie{% endblock %}
+
+{% block content %}
+<h1>Your Orders</h1>
+    <div class="row" stye="margin-left:1rem">
+        {% for item in cart_items %}
+        <div class="col-sm-2" style="margin: 1cm;">
+            <div class="card" style="max-width: 10rem;" >
+                <img src="{{ item.Dish.product_image.url }}" class="card-img-top" >
+                <div class="card-body">
+                    <p class="card-title">{{ item.Dish.name }} ({{ item.quantity }}</p>
+                    <p class="card-text">Rs: {{ item.Dish.price }}</p>
+                    
+                    <button type="button" class="btn btn-dark"><a style="text-decoration: none;color:white;" href="{% url 'remove_from_cart' item.id %}">Remove</a></button>
+         
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <div class="col-sm-4">
+                <div class="card mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <p class="card-text">Your cart is empty.</p>
+                    </div>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
+            </div>
+            
+        {% endfor %}
+    </div>
+    <br>
+    <p>Total Price:  Rs {{ total_price }}</p>
+    <br>
+{% endblock %}
