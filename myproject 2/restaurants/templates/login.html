@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Login - Palatial Patisserie{% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    <br><br><br><br><br><br><br><br><br><br>
-    
+<br>
+<div class="container d-flex justify-content-center align-items-center" style="background-color: rgba(0, 0, 0, 0.5); height: 50vh; width: 60vh; color: white;">
+    <div class="text-center">
+        <h1>Login</h1>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p|safe }} <!-- Use |safe to render form HTML without escaping -->
+            <button type="submit" class="btn btn-secondary" style="color: white;">Login</button>
+
+        </form>
+    </div>
+</div>
+<br><br>
+
+
+
+
 {% endblock %}

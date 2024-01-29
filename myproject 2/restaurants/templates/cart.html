@@ -1,38 +1,45 @@
-
-
 {% extends 'base.html' %}
 
-{% block title %} Palatial Patisserie{% endblock %}
-
+{% block title %}Orders - Palatial Patisserie{% endblock %}
 {% block content %}
-<h1>Your Orders</h1>
-    <div class="row" stye="margin-left:1rem">
+    
+    <div style="background-color: rgba(0, 0, 0, 0.5); margin :2%; padding :2%">
+        <center><h1 style="color:white">Your Orders</h1></center>
+        <br>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" >
+        
         {% for item in cart_items %}
-        <div class="col-sm-2" style="margin: 1cm;">
-            <div class="card" style="max-width: 10rem;" >
-                <img src="{{ item.Dish.product_image.url }}" class="card-img-top" >
+        <div class="col">
+            <div class="card" style="width: 18rem; border-radius: 10px;">
+                <img src="{{ item.Dish.product_image.url }}" class="card-img-top" alt="{{ dish.name }}" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
-                    <p class="card-title">{{ item.Dish.name }} ({{ item.quantity }}</p>
-                    <p class="card-text">Rs: {{ item.Dish.price }}</p>
-                    
-                    <button type="button" class="btn btn-dark"><a style="text-decoration: none;color:white;" href="{% url 'remove_from_cart' item.id %}">Remove</a></button>
-         
+                    <center>
+                    <h5 class="card-title" style="font-size: 1rem;">{{ item.Dish.name }} [{{ item.quantity }}]</h5>
+                    <p class="card-text" style="font-size: 0.9rem;">Price: Rs {{ item.Dish.price }}</p>
+                    <button type="button" class="btn btn-dark btn-sm"><a style="text-decoration: none;color:white;" href="{% url 'remove_from_cart' item.id %}">Remove</a></button>
+                </center>
                 </div>
             </div>
         </div>
         {% empty %}
-            <div class="col-sm-4">
-                <div class="card mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <p class="card-text">Your cart is empty.</p>
-                    </div>
+        <div class="col">
+            <div class=background-color: rgba(0, 0, 0, 0.5)>
+                <div class="card-body">
+                    <p class="card-text text-white">Your cart is empty.</p>
                 </div>
-                <br><br><br><br><br><br><br><br><br>
             </div>
-            
+        </div>
+            <br><br><br><br><br><br><br><br>    
         {% endfor %}
     </div>
-    <br>
-    <p>Total Price:  Rs {{ total_price }}</p>
-    <br>
+</div>
+<div class="row mt-4" style="background-color: rgba(0, 0, 0, 0.5); padding: 5px; padding-left: 7%;">
+    <div class="col" >
+        <h5 class="text-white">Total Price: Rs {{ total_price }}</h5>
+    </div>
+</div>
+</div>
+</div>
+
 {% endblock %}
+
