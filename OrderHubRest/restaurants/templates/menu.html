@@ -2,23 +2,24 @@
 
 {% block title %}Menu{% endblock %}
 {% block content %}
-<div style="background-color: rgba(0, 0, 0, 0.5); margin :2%; padding :2%">
+<div style="background-color: rgba(0, 0, 0, 0.5); margin :2% 7%; padding:10px 20px 30px 20px;">
     <center><h1 style="color:white">Our Menu</h1></center>
     <br>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4">
         {% for dish in dishes %}
+        <center>
         <div class="col">
-            <div class="card" style="width: 18rem; border-radius: 10px;">
-                <img src="{{ dish.product_image.url }}" class="card-img-top" alt="{{ dish.name }}" style="height: 200px; object-fit: cover;">
+            <div class="card" style="width: 12rem; border-radius: 25px; padding-top: 1rem;">
+                <h5 class="card-title" style="font-size: 1rem;">{{ dish.name }}</h5>
+                <img src="{{ dish.product_image.url }}" class="card-img-top" alt="{{ dish.name }}" style="height: 100px; object-fit:scale-down;">
                 <div class="card-body">
-                    <center>
-                    <h5 class="card-title" style="font-size: 1rem;">{{ dish.name }}</h5>
                     <p class="card-text" style="font-size: 0.9rem;">Rs: {{ dish.price }}</p>
-                    <button type="button" class="btn btn-dark btn-sm"><a style="text-decoration: none;color:white;" href="{% url 'add_to_cart' dish.id %}">Order now</a></button>
-                </center>
+                    <button type="button" class="btn btn-dark btn-sm"><a style="text-decoration: none;color:white;" href="{% url 'add_to_cart' dish.id %}">Buy Now</a></button>
+                
                 </div>
             </div>
         </div>
+        </center>
         {% empty %}
             <div class="col-sm-4">
                 <div class="card mb-3" style="max-width: 18rem;">
